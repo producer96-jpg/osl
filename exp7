@@ -1,0 +1,153 @@
+#include <iostream>
+#include <queue>
+#include <vector>
+#include <unordered_set>
+using namespace std;
+
+// ------------ FIFO USING QUEUE ------------
+
+void FIFO(int pages[], int n, int capacity)
+{
+    queue<int> q; // maintains order (FIFO)
+    unordered_set<int> s; // to check presence
+    int faults = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        // If page not present
+        if(s.find(pages[i]) == s.end())
+        {
+            // If memory full
+            if(q.size() == capacity)
+            {
+                int val = q.front(); // oldest page
+                q.pop(); // remove from queue
+                s.erase(val); // remove from set
+            }
+
+            q.push(pages[i]); // insert new page
+            s.insert(pages[i]);
+            faults++;
+        }
+    }
+
+    cout << "FIFO Page Faults = " << faults << endl;
+}
+
+// ------------ LRU USING VECTOR (QUEUE STYLE) ------------
+
+void LRU(int pages[], int n, int capacity)
+{
+    vector<int> q; // works like queue (front = LRU, back = MRU)
+    int faults = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        int found = 0;
+
+        // Check if page exists
+        for(int j = 0; j < q.size(); j++)
+        {
+            if(q[j] == pages[i])
+            {
+                found = 1;
+
+                // Remove from current position
+                q.erase(q.begin() + j);
+
+                // Push to end (most recently used)
+                q.push_back(pages[i]);
+
+                break;
+            }
+        }
+
+        // if page not found
+        if(!found)
+        {
+            // if full -> remove least recently used (front)
+            if(q.size() == capacity)
+                q.erase(q.begin());
+
+            // Insert new page
+            q.push_back(pages[i]);
+            faults++;
+        }
+    }
+
+    cout << "LRU Page Faults = " << faults << endl;
+}
+
+// ------------ OPTIMAL USING VECTOR ------------
+
+bool isPresent(vector<int> &frame, int page)
+{
+    for(int x : frame)
+        if(x == page)
+            return true;
+    return false;
+}
+
+void Optimal(int pages[], int n, int capacity)
+{
+    vector<int> frame;
+    int faults = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+        // if page not present
+        if(!isPresent(frame, pages[i]))
+        {
+            // if space available
+            if(frame.size() < capacity)
+            {
+                frame.push_back(pages[i]);
+            }
+            else
+            {
+                int index = -1, farthest = i;
+
+                // Find page used farthest in future
+                for(int j = 0; j < frame.size(); j++)
+                {
+                    int k;
+                    for(k = i + 1; k < n; k++)
+                    {
+                        if(frame[j] == pages[k])
+                            break;
+                    }
+
+                    if(k > farthest)
+                    {
+                        farthest = k;
+                        index = j;
+                    }
+                }
+
+                if(index == -1)
+                    index = 0;
+
+                frame[index] = pages[i]; // replace page
+            }
+
+            faults++;
+        }
+    }
+
+    cout << "Optimal Page Faults = " << faults << endl;
+}
+
+// ------------ MAIN FUNCTION ------------
+
+int main()
+{
+    int pages[] = {1, 3, 0, 3, 5, 6, 3};
+    int n = sizeof(pages)/sizeof(pages[0]);
+    int frames = 3;
+
+    FIFO(pages, n, frames);
+    LRU(pages, n, frames);
+    Optimal(pages, n, frames);
+
+    return 0;
+}
