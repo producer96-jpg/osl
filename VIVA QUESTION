@@ -1,0 +1,398 @@
+EXP1 
+
+🔹 Basic Linux Commands (File & Directory)
+
+Q1. What is Linux?
+👉 Open-source operating system based on Unix operating system.
+
+Q2. What is a command in Linux?
+👉 Instruction given to OS through terminal.
+
+Q3. What does pwd command do?
+👉 Shows current directory path.
+
+Q4. What is ls command?
+👉 Lists files and directories.
+
+Q5. What is cd command?
+👉 Changes directory.
+
+Q6. What is mkdir?
+👉 Creates new directory.
+
+Q7. What is rmdir?
+👉 Deletes empty directory.
+
+Q8. Difference between rm and rmdir?
+👉 rm → deletes files/directories
+👉 rmdir → deletes only empty directory
+
+Q9. What is cp command?
+👉 Copies files.
+
+Q10. What is mv command?
+👉 Moves or renames files.
+
+🔹 File Management Commands
+
+Q11. What is cat command?
+👉 Displays file content.
+
+Q12. What is touch command?
+👉 Creates empty file.
+
+Q13. What is chmod?
+👉 Changes file permissions.
+
+Q14. What is file permission in Linux?
+👉 Controls read (r), write (w), execute (x).
+
+Q15. What is head and tail?
+👉 head → first lines
+👉 tail → last lines
+
+🔹 Process Management
+
+Q16. What is a process?
+👉 Program in execution.
+
+Q17. What is ps command?
+👉 Shows running processes.
+
+Q18. What is top command?
+👉 Displays real-time processes.
+
+Q19. What is kill command?
+👉 Terminates a process.
+
+Q20. What is PID?
+👉 Process ID (unique number).
+
+🔹 System Calls (IMPORTANT)
+
+Q21. What is a system call?
+👉 Interface between user program and OS kernel.
+
+Q22. Why system calls are needed?
+👉 To access hardware safely via OS.
+
+Q23. Types of system calls?
+👉 File, Process, Device, Information
+
+Q24. Example of file system calls?
+👉 open(), read(), write(), close()
+
+Q25. Example of process system calls?
+👉 fork(), exec(), wait(), exit()
+
+
+EXP3
+
+🔹 Basic Concepts
+
+Q1. What is CPU scheduling?
+👉 Process of selecting which process gets CPU next.
+
+Q2. What is a scheduling algorithm?
+👉 Method used by OS to allocate CPU to processes.
+
+Q3. Why is CPU scheduling needed?
+👉 To improve CPU utilization and reduce waiting time.
+
+🔹 Preemptive vs Non-Preemptive
+
+Q4. What is non-preemptive scheduling?
+👉 Once CPU is given, process runs till completion.
+
+Q5. What is preemptive scheduling?
+👉 CPU can be taken from a running process.
+
+Q6. Example of non-preemptive algorithms?
+👉 FCFS, SJF (non-preemptive)
+
+Q7. Example of preemptive algorithms?
+👉 Round Robin, SRTF (Shortest Remaining Time First)
+
+Q8. Key difference between them?
+👉 Preemptive = interrupt allowed
+👉 Non-preemptive = no interruption
+
+🔹 Important Algorithms
+
+Q9. What is FCFS?
+👉 First Come First Serve (simple queue based).
+
+Q10. What is SJF?
+👉 Shortest Job First (smallest burst time first).
+
+Q11. What is Round Robin?
+👉 Each process gets fixed time (time quantum).
+
+Q12. What is SRTF?
+👉 Preemptive version of SJF.
+
+🔹 Time Calculations
+
+Q13. What is burst time?
+👉 Time required by process to execute.
+
+Q14. What is waiting time?
+👉 Time process waits in ready queue.
+
+Q15. What is turnaround time?
+👉 Completion time – arrival time.
+
+Q16. What is response time?
+👉 Time from request to first response.
+
+
+EXP4
+
+👇
+
+🔹 Basic Concepts
+
+Q1. What is process synchronization?
+👉 Coordination of processes to share resources safely.
+
+Q2. What is a critical section?
+👉 Part of code where shared resource is accessed.
+
+Q3. Why is synchronization needed?
+👉 To avoid data inconsistency and race conditions.
+
+Q4. What is a race condition?
+👉 When output depends on execution order of processes.
+
+🔹 Peterson’s Solution
+
+Q5. What is Peterson’s solution?
+👉 Software solution for mutual exclusion between 2 processes.
+
+Q6. How many processes does Peterson’s algorithm support?
+👉 Only 2 processes.
+
+Q7. Which variables are used in Peterson’s solution?
+👉 flag[2] and turn
+
+Q8. What is the role of flag[]?
+👉 Indicates interest of process to enter critical section.
+
+Q9. What is the role of turn?
+👉 Decides which process gets priority.
+
+
+EXP5
+
+🔹 Basic Concepts
+
+Q1. What is a deadlock?
+👉 Situation where processes wait forever for resources.
+
+Q2. What are the necessary conditions for deadlock?
+👉
+
+Mutual Exclusion
+Hold and Wait
+No Preemption
+Circular Wait
+
+Q3. What is deadlock avoidance?
+👉 Technique to prevent deadlock by checking safe state before allocation.
+
+🔹 Banker’s Algorithm
+
+Q4. What is Banker’s Algorithm?
+👉 Deadlock avoidance algorithm that ensures system remains in safe state.
+
+Q5. Why is it called Banker’s Algorithm?
+👉 Works like a bank granting loans safely.
+
+Q6. What is a safe state?
+👉 System can allocate resources without deadlock.
+
+Q7. What is an unsafe state?
+👉 May lead to deadlock.
+
+🔹 Data Structures Used
+
+Q8. What are the matrices used?
+👉
+
+Allocation
+Maximum
+Need
+Available
+
+Q9. What is Need matrix?
+👉 Need = Maximum – Allocation
+
+Q10. What is Available?
+👉 Free resources in system.
+
+
+EXP6
+
+🔹 Basic Concepts
+
+Q1. What is memory management?
+👉 Technique used by OS to manage main memory.
+
+Q2. What is dynamic partitioning?
+👉 Memory is divided into variable-size blocks based on process need.
+
+Q3. Why dynamic partitioning is used?
+👉 To utilize memory efficiently.
+
+🔹 Fragmentation
+
+Q4. What is fragmentation?
+👉 Wastage of memory.
+
+Q5. Which type occurs in dynamic partitioning?
+👉 External fragmentation
+
+Q6. What is external fragmentation?
+👉 Free memory exists but scattered in small blocks.
+
+🔹 Placement Algorithms
+🔸 1. First Fit
+
+Q7. What is First Fit?
+👉 Allocates first block that is large enough.
+
+Q8. Advantage of First Fit?
+👉 Fast allocation.
+
+Q9. Disadvantage?
+👉 May create fragmentation.
+
+🔸 2. Best Fit
+
+Q10. What is Best Fit?
+👉 Allocates smallest block that fits the process.
+
+Q11. Advantage?
+👉 Reduces memory wastage.
+
+Q12. Disadvantage?
+👉 Slower (searches entire memory).
+
+🔸 3. Worst Fit
+
+Q13. What is Worst Fit?
+👉 Allocates largest available block.
+
+Q14. Advantage?
+👉 Leaves large free blocks.
+
+Q15. Disadvantage?
+👉 Inefficient memory use.
+
+🔹 Programming Related
+
+Q21. What input is required?
+👉 Memory block sizes and process sizes.
+
+Q22. What output is expected?
+👉 Allocation result (which process → which block).
+
+Q23. Which language is used?
+👉 C / C++
+
+🔹 Advanced Viva Questions
+
+Q24. What is compaction?
+👉 Rearranging memory to remove fragmentation.
+
+Q25. Limitation of dynamic partitioning?
+👉 External fragmentation.
+
+Q26. Static vs Dynamic partitioning?
+👉 Static = fixed size
+👉 Dynamic = variable size
+
+EXP7
+
+🔹 Basic Concepts
+
+Q1. What is virtual memory?
+👉 Technique that uses disk as an extension of RAM.
+
+Q2. What is a page?
+👉 Fixed-size block of memory.
+
+Q3. What is paging?
+👉 Dividing memory into pages and frames.
+
+🔹 Page Fault
+
+Q4. What is a page fault?
+👉 Occurs when required page is not in main memory.
+
+Q5. What happens during a page fault?
+👉 OS loads page from disk into memory.
+
+🔹 Page Replacement
+
+Q6. What is page replacement?
+👉 Replacing an existing page to load a new page.
+
+Q7. Why page replacement is needed?
+👉 Because memory is limited.
+
+🔹 Page Replacement Algorithms
+🔸 FIFO (First In First Out)
+
+Q8. What is FIFO?
+👉 Oldest page is removed first.
+
+Q9. Advantage?
+👉 Simple to implement.
+
+Q10. Disadvantage?
+👉 May remove important pages.
+
+🔸 LRU (Least Recently Used)
+
+Q11. What is LRU?
+👉 Removes page not used for longest time.
+
+Q12. Advantage?
+👉 Better performance than FIFO.
+
+Q13. Disadvantage?
+👉 Complex to implement.
+
+🔸 Optimal
+
+Q14. What is Optimal algorithm?
+👉 Removes page that will not be used in future.
+
+Q15. Advantage?
+👉 Minimum page faults.
+
+Q16. Disadvantage?
+👉 Not practical (future knowledge needed).
+
+🔹 Advanced Questions
+
+Q21. What is thrashing?
+👉 Too many page faults → system slows down.
+
+Q22. What is Belady’s anomaly?
+👉 Increasing frames increases page faults (in FIFO).
+
+Q23. Which algorithm avoids Belady’s anomaly?
+👉 LRU and Optimal
+
+🔹 Programming Related
+
+Q24. What input is required?
+👉 Page reference string, number of frames.
+
+Q25. What output is expected?
+👉 Number of page faults and hits.
+
+Q26. Which language is used?
+👉 C / C++
