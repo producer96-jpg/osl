@@ -1,0 +1,16 @@
+#include <iostream>
+#include <unistd.h>   // sleep()
+
+using namespace std;
+
+int main()
+{
+    cout << "Waiting for 5 seconds..." << endl;
+
+    // Sleep for 5 seconds
+    sleep(5);
+
+    cout << "Process resumed" << endl;
+
+    return 0;
+}
