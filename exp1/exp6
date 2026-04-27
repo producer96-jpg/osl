@@ -1,0 +1,30 @@
+#include <iostream>   // For input-output operations
+#include <sys/stat.h> // For mkdir()
+#include <dirent.h>   // For opendir(), readdir()
+#include <unistd.h>   // For rmdir()
+
+using namespace std;
+
+int main()
+{
+    // Create a new directory
+    mkdir("OSLabDir", 0755);
+
+    // Open current directory
+    DIR *dir = opendir(".");
+    struct dirent *entry;
+
+    // Read and display directory entries
+    while ((entry = readdir(dir)) != NULL)
+    {
+        cout << entry->d_name << endl;
+    }
+
+    // Close directory
+    closedir(dir);
+
+    // Remove directory
+    rmdir("OSLabDir");
+
+    return 0;
+}
