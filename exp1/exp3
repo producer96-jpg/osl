@@ -1,0 +1,38 @@
+#include <iostream>
+#include <fcntl.h>
+#include <unistd.h>
+#include <cstring>
+
+using namespace std;
+
+int main()
+{
+    int fd;
+    char buffer[100];
+
+    // Open file
+    fd = open("info.txt", O_CREAT | O_RDWR, 0644);
+
+    if (fd == -1)
+    {
+        cout << "File open failed" << endl;
+        return 1;
+    }
+
+    // Write data
+    char msg[] = "Linux File System Calls";
+
+    write(fd, msg, strlen(msg));
+    cout << "Data written" << endl;
+
+    // Reposition file pointer to start
+    lseek(fd, 0, SEEK_SET);
+
+    // Read data
+    read(fd, buffer, sizeof(buffer));
+    cout << "Data read: " << buffer << endl;
+
+    close(fd);
+
+    return 0;
+}
