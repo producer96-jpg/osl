@@ -1,0 +1,26 @@
+#include <iostream>
+#include <unistd.h>
+#include <signal.h>
+
+using namespace std;
+
+// Signal handler function
+void handler(int sig)
+{
+    cout << "\nSignal Received: " << sig << endl;
+}
+
+int main()
+{
+    // Register signal handler
+    signal(SIGINT, handler);
+
+    cout << "Press Ctrl+C to send signal" << endl;
+
+    // Wait for signal
+    pause();
+
+    cout << "Process resumed" << endl;
+
+    return 0;
+}
