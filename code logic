@@ -1,0 +1,196 @@
+exp4 
+
+This program implements Peterson’s Algorithm to solve the critical section problem for two threads.
+
+It uses two variables:
+flag[2] → shows if a process wants to enter critical section
+turn → decides whose turn it is
+Each thread:
+Sets its flag = 1 (wants to enter)
+Gives turn to the other process
+Waits if the other process also wants to enter
+This ensures:
+✅ Only one thread enters the critical section at a time (mutual exclusion)
+✅ Avoids race condition on shared variable
+
+exp5
+
+This program implements the Banker’s Algorithm used in operating systems for deadlock avoidance.
+
+
+It takes:
+
+
+Allocation matrix
+
+
+Max matrix
+
+
+Available resources
+
+
+
+
+Then calculates:
+
+
+Need = Max − Allocation
+
+
+
+
+Logic:
+
+
+Check if a process’s need ≤ available resources
+
+
+If yes → execute it, release its resources
+
+
+Add it to safe sequence
+
+
+Repeat for all processes
+
+
+
+
+If all processes execute → Safe State
+
+
+If not → Unsafe State (possible deadlock)
+
+
+👉 In short:
+It checks whether the system can execute all processes safely without causing deadlock and gives a safe sequence.
+
+
+exp6
+
+This program demonstrates memory allocation techniques in Operating Systems:
+
+First Fit
+Best Fit
+Worst Fit
+🔹 Logic:
+Memory blocks and process sizes are given.
+Each algorithm allocates processes differently:
+First Fit
+→ Allocates the first block that is large enough.
+Best Fit
+→ Allocates the smallest suitable block (minimizes wastage).
+Worst Fit
+→ Allocates the largest block (leaves big remaining space).
+After allocation, block size is reduced.
+
+👉 In short:
+This code compares three memory allocation strategies and shows how processes are assigned to memory blocks differently.
+
+  exp1
+
+  This program demonstrates file handling using system calls in Linux/UNIX.
+🔹 System Calls Used:
+
+
+open system call → creates/opens a file (demo.txt)
+
+
+write system call → writes data into the file
+
+
+close system call → closes the file
+
+
+unlink system call → deletes the file
+
+
+🔹 Logic:
+
+
+Create a file using open()
+
+
+Write text into it using write()
+
+
+Close the file
+
+
+Delete the file using unlink()
+
+
+👉 In short:
+This code creates a file, writes data into it, and then deletes it using OS-level system calls.
+
+file management
+
+This program demonstrates process creation using fork() in Operating Systems.
+
+🔹 Concept:
+Uses fork system call
+🔹 Logic:
+fork() creates a child process
+After fork:
+pid == 0 → Child process executes
+pid > 0 → Parent process executes
+Child prints message and terminates using exit()
+Parent continues execution
+
+👉 In short:
+This code shows how a parent process creates a child process and both run independently.
+
+process
+
+#include <iostream>
+ #include <sys/stat.h>
+ #include <unistd.h>
+ #include <dirent.h>
+ #include <sys/types.h>
+
+ using namespace std;
+
+ int main()
+ {
+
+cout << "\n===== DIRECTORY MANAGEMENT =====\n";
+
+mkdir("MyDirectory", 0777);
+
+cout << "Directory created.\n";
+
+
+chdir("MyDirectory");
+
+cout << "Changed to MyDirectory.\n";
+
+
+char path[100];
+
+
+getcwd(path, sizeof(path));
+
+cout << "Current Directory Path: <<<< path <<< endl;
+
+chdir("..");
+
+DIR *dir;
+struct dirent *entry;
+dir opendir(".");
+cout << "\nDirectory Contents: \n";
+
+while ((entry = readdir(dir)) != NULL)
+
+{
+
+cout << entry->d_name << endl;
+
+}
+closedir(dir);
+rmdir("MyDirectory");
+cout << "Directory removed.\n";
+return 0;
+}
+
+directory
