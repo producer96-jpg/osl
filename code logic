@@ -97,4 +97,67 @@ After allocation, block size is reduced.
 👉 In short:
 This code compares three memory allocation strategies and shows how processes are assigned to memory blocks differently.
 
+EXP7:-
+👇
+🔹 Core Idea
+
+This program compares 3 Page Replacement Algorithms used in Operating Systems:
+
+FIFO
+LRU
+Optimal
+
+👉 Goal: Minimize page faults (when a required page is not in memory)
+
+🔹 1. FIFO (First In First Out)
+Uses queue
+Oldest page is removed first
+
+Logic:
+
+If page not in memory → page fault
+If memory full → remove front (oldest)
+Insert new page
+
+👉 Simple but not always efficient
+
+🔹 2. LRU (Least Recently Used)
+Uses vector (queue style)
+Removes the least recently used page
+
+Logic:
+
+If page found → move it to end (recently used)
+If not found:
+Remove front (least used) if full
+Insert new page
+
+👉 Better than FIFO (uses recent usage)
+
+🔹 3. Optimal
+Uses future knowledge (best possible)
+
+Logic:
+
+If page not present:
+If space → insert
+Else:
+Replace page used farthest in future
+If a page is never used again → replace it
+
+👉 Gives minimum possible page faults
+
+🔹 Key Difference
+Algorithm	Replacement Rule
+FIFO	Oldest page
+LRU	Least recently used
+Optimal	Used farthest in future
+🔹 In Short
+
+👉 The program:
+
+Simulates memory with fixed frames
+Checks each page request
+Counts page faults for each algorithm
+
  
