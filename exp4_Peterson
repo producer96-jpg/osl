@@ -1,64 +1,37 @@
-#include<stdio.h>
-#include<pthread.h>
-#include<unistd.h>
-
-int flag[2]={0,0};
+#include <iostream>
+#include <thread>
+using namespace std;
+// Shared variables for Peterson's Algorithm
+bool flag[2] = {false, false};
 int turn;
-int shared=0;
-
-void *process1(void *arg)
+// Process 0
+void process0()
 {
-flag[0]=1;
-turn=1;
-
-while(flag[1]&&turn==1);
-
-//Critical Section
-printf("Process 1 entering Critical Section\n");
-
-shared++;
-printf("Shared Value=%d\n",shared);
-
-printf("Process 1 leaving Critical Section\n");
-
-flag[0]=0;
-
-return NULL;
+    flag[0] = true;
+    turn = 1;
+    // Wait until Process 1 leaves critical section
+    while (flag[1] && turn == 1);
+    cout << "Process 0 in critical section" << endl;
+    flag[0] = false;
 }
-
-void *process2(void *arg)
+// Process 1
+void process1()
 {
-flag[1]=1;
-turn=0;
+    flag[1] = true;
+    turn = 0;
+    // Wait until Process 0 leaves critical section
+    while (flag[0] && turn == 0);
 
-while(flag[0]&&turn==0);
+    cout << "Process 1 in critical section" << endl;
 
-//Critical Section
-printf("Process 2 entering Critical Section\n");
-
-shared++;
-printf("Shared Value=%d\n",shared);
-
-printf("Process 2 leaving Critical Section");
-
-flag[1]=0;
-
-return NULL;
+    flag[1] = false;
 }
-
 int main()
 {
-pthread_t t1,t2;
+    thread t1(process0);
+    thread t2(process1);
+    t1.join();
+    t2.join();
 
-pthread_create(&t1,NULL,process1,NULL);
-pthread_create(&t2,NULL,process2,NULL);
-
-pthread_join(t1,NULL);
-pthread_join(t2,NULL);
-
-printf("Final Shared Value=%d\n",shared);
-
-return 0;
+    return 0;
 }
-
-
